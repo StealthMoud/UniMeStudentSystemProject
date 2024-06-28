@@ -1,0 +1,24 @@
+{
+  "name": "stealthmoud/unimestudentsys",
+  "description": "This is a simple project for my university assignment and it is about a university management system.",
+  "version": "1.0.0",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "stealthmoud",
+      "email": "stealthmoud@gamil.com"
+    }
+  ],
+  "require": {
+    "ext-mysqli": "*",
+    "ext-openssl": "*",
+    "phpmailer/phpmailer": "^6.9",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
