@@ -15,7 +15,6 @@ class AuthController extends Controller {
             $username = Validator::sanitize($_POST['username']);
             $password = Validator::sanitize($_POST['password']);
             $rolePart = explode('@', $username)[1] ?? '';
-            $role = '';
 
             // Determine the role based on the username's domain part
             switch ($rolePart) {
@@ -32,7 +31,7 @@ class AuthController extends Controller {
                     $role = 'applicant';
                     break;
                 default:
-                    $role = ''; // Invalid role
+                    $role = '';
                     break;
             }
 
@@ -72,13 +71,12 @@ class AuthController extends Controller {
         }
     }
 
-
     public function register() {
         Session::init();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = Validator::sanitize($_POST['username']);
             $password = Validator::sanitize($_POST['password']);
-            $role = isset($_POST['role']) ? $_POST['role'] : 'applicant'; // Default role
+            $role = $_POST['role'] ?? 'applicant'; // Default role
             $isAdminAction = isset($_POST['role']);
 
             if (!Validator::validateUsername($username, $role)) {

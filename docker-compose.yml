@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: php-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+      - mongo
+      - neo4j
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-db
+    platform: linux/amd64
+    ports:
+      - "3307:3306"  # Changed host port to 3307
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Set root password
+      MYSQL_DATABASE: UniMe
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:4.4
+    container_name: mongo-db
+    platform: linux/amd64
+    ports:
+      - "27018:27017"  # Changed host port to 27018
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - backend
+
+  neo4j:
+    image: neo4j:4.3
+    container_name: neo4j-db
+    platform: linux/amd64
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/password
+    volumes:
+      - neo4j_data:/data
+    networks:
+      - backend
+
+volumes:
+  mysql_data:
+  mongo_data:
+  neo4j_data:
+
+networks:
+  backend:

@@ -11,6 +11,6 @@ class Model {
 
     public function __construct() {
         $database = new database();
-        $this->db = $database->getConnection();
+        $this->db = $database->getMysqlConnection();
     }
 }
