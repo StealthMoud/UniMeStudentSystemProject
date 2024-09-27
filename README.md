@@ -1,7 +1,3 @@
-Here's a well-organized and clean README for your **UniMeStudentSystem** project:
-
----
-
 # UniMeStudentSystem
 
 UniMeStudentSystem is a university project designed as a web application with four main roles: **Admin**, **Student**, **Applicant**, and **Professor**. This system enables applicants to register, admins to manage users and roles, and students and professors to access university functionalities. The system is built using three different databases running inside Docker containers via Docker Compose.
